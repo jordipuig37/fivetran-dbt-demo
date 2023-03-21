@@ -1,0 +1,6 @@
+profiles.yml
+.user.yml
+target/
+dbt_modules/
+logs/
+**/.DS_Store

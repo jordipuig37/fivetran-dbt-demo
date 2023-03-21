@@ -3,7 +3,7 @@ name: 'fivetran_dbt_demo'
 config-version: 2
 version: '0.1'
 
-profile: 'jordipuig37'
+profile: 'fivetran-snfk-user'
 
 model-paths: ["models"]
 seed-paths: ["seeds"]
@@ -21,4 +21,4 @@ require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 models:
   sample:
-      materialized: table
+    materialized: table
