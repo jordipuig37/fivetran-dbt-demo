@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: s3_demo
+    description: 'Source tables loaded with Fivetran.'
+    database: FIVETRAN_DATABASE
+    schema: S3_DEMO
+    tables:
+      - name: trips_data
+      # TODO: define tests here too
+      - name: weather_nyc

@@ -20,6 +20,9 @@ clean-targets:
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 models:
-  fivetran-dbt-demo:
+  fivetran_dbt_demo:
+    staging:
+      +materialized: view
+      +schema: stg
     tables:
       materialized: table

@@ -4,15 +4,19 @@
         unique_key='date_key'
     )
 }}
-WITH DISTINCT_DATES AS (
+WITH distinct_dates AS (
     SELECT DISTINCT
         TO_CHAR(STARTTIME, 'YYYYMMDD')::INT AS DATE_KEY,
         DATE_TRUNC('DAY', STARTTIME) AS DATETIME_DAY
-    FROM FIVETRAN_DATABASE.S3_DEMO.TRIPS_DATA
+    FROM {{ ref('trips_data') }}
+),
+
+final as (
+    SELECT
+        DATE_KEY,
+        DATETIME_DAY
+        -- TODO: ADD OTHER HIERARCHIC FIELDS
+    FROM distinct_dates
 )
 
-SELECT
-    DATE_KEY,
-    DATETIME_DAY
-    -- ADD OTHER HIERARCHIC FIELDS
-FROM DISTINCT_DATES
+SELECT * FROM final
