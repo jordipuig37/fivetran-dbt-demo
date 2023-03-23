@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: Dimension table for the date. At day granularity
+
+    columns:
+      - name: date_key
+        description: The key in YYYYMMDD format as integer
+        tests:
+          - unique
+          - not_null
+
+      - name: DATETEIME_DAY
+        description: The datetime as date
+
+  - name: m_stations
+    description: The master table for the stations.
+
+    columns:
+      - name: station_id
+        tests:
+          - unique
+          - not_null
+        description: This is a unique identifier for a station.
+
+      - name: station_name
+        description: Name of the station in string
+        tests:
+          - not_null
+
+      - name: station_latitude
+        description: station latitude
+
+      - name: station_longitude
+        description: station latitude
+
+  - name: f_trips
+    description: The fact table for trips
+
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+
+      - name: start_station_id
+        tests:
+          - not_null
+
+      - name: end_station_id
+        tests:
+          - not_null
+
+      - name: bikeid
+      - name: usertype
+      - name: birth_year
+      - name: gender
+      - name: tripduration
+      - name: starttime
+      - name: stoptime

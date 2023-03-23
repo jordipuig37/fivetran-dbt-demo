@@ -1,0 +1,18 @@
+{{
+    config(
+        materialized='table',
+        unique_key='date_key'
+    )
+}}
+WITH DISTINCT_DATES AS (
+    SELECT DISTINCT
+        TO_CHAR(STARTTIME, 'YYYYMMDD')::INT AS DATE_KEY,
+        DATE_TRUNC('DAY', STARTTIME) AS DATETIME_DAY
+    FROM FIVETRAN_DATABASE.S3_DEMO.TRIPS_DATA
+)
+
+SELECT
+    DATE_KEY,
+    DATETIME_DAY
+    -- ADD OTHER HIERARCHIC FIELDS
+FROM DISTINCT_DATES
