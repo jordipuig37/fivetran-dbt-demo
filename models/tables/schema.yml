@@ -1,5 +1,6 @@
 version: 2
 
+
 models:
   - name: dim_date
     description: Dimension table for the date. At day granularity
@@ -58,3 +59,47 @@ models:
       - name: tripduration
       - name: starttime
       - name: stoptime
+
+  - name: m_weather_stations
+    description: 'The master data related to wether stations located in NYC'
+    columns:
+      - name: station_key
+        tests:
+          - unique
+          - not_null
+
+      - name: name
+      - name: country
+      - name: region
+      - name: wmo
+      - name: icao
+      - name: latitude
+      - name: longitude
+      - name: elevation
+      - name: timezone
+
+  - name: f_weather
+    description: 'Fact data of the weather in NYC'
+    columns:
+      - name: station_key
+        tests:
+          - relationships:
+              to: ref('m_weather_stations')
+              field: station_key
+
+
+      - name: date_key
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: obs_time
+      - name: temp
+      - name: dwpt
+      - name: rhum
+      - name: prcp
+      - name: wdir
+      - name: wspd
+      - name: pres
+      - name: coco

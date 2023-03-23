@@ -1,0 +1,10 @@
+version: 2
+
+
+models:
+  - name: trips_temp_by_day
+    description: 'Daily aggregated number of trips and average temperature.'
+    columns:
+      - name: date
+      - name: n_trips
+      - name: avg_temp

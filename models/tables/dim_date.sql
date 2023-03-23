@@ -1,22 +1,17 @@
-{{
-    config(
-        materialized='table',
-        unique_key='date_key'
-    )
-}}
-WITH distinct_dates AS (
-    SELECT DISTINCT
-        TO_CHAR(STARTTIME, 'YYYYMMDD')::INT AS DATE_KEY,
-        DATE_TRUNC('DAY', STARTTIME) AS DATETIME_DAY
-    FROM {{ ref('trips_data') }}
+WITH all_dates AS (
+    select
+        dateadd(day, seq4(), '2013-06-01') as day_dt
+    FROM TABLE(generator(rowcount => 2200))
 ),
 
-final as (
+final AS (
     SELECT
-        DATE_KEY,
-        DATETIME_DAY
-        -- TODO: ADD OTHER HIERARCHIC FIELDS
-    FROM distinct_dates
+        TO_CHAR(DAY_DT, 'YYYYMMDD')::INT AS DATE_KEY,
+        DAY_DT AS DATE_DT,
+        YEAR(DAY_DT) AS YEAR,
+        MONTH(DAY_DT) AS MONTH,
+        DAY(DAY_DT) AS DAY
+    FROM all_dates
 )
 
 SELECT * FROM final
