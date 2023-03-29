@@ -103,3 +103,19 @@ models:
       - name: wspd
       - name: pres
       - name: coco
+
+  - name: dim_customers
+    description: 'Customers master data with SCD type 2'
+    columns:
+      - name: scd_id
+        tests:
+          - unique
+          - not_null
+      - name: client_id
+        tests:
+          - not_null
+      - name: name
+      - name: surname
+      - name: TST_REC
+      - name: VALID_FROM
+      - name: VALID_TO
