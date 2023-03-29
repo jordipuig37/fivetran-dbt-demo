@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: src_scd
+    description: 'Source table for experimenting with SCD'
+    database: FIVETRAN_DATABASE
+    tables:
+      - name: SRC_M_CUSTOMER
