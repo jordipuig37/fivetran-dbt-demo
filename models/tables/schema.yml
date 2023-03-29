@@ -87,7 +87,6 @@ models:
               to: ref('m_weather_stations')
               field: station_key
 
-
       - name: date_key
         tests:
           - relationships:
